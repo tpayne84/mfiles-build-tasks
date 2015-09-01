@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- $Id$ -->
+
+  <PropertyGroup>
+    <MFilesBuildTasksPath>C:\Program Files\M-Files\MSBuild Tasks</MFilesBuildTasksPath>
+  </PropertyGroup>
+
+  <!-- Begin: Task Listing -->
+  <UsingTask AssemblyFile="$(MFilesBuildTasksPath)\MFiles.BuildTasks.dll" TaskName="UXPack" />
+
+  <UsingTask AssemblyFile="$(MFilesBuildTasksPath)\MFiles.BuildTasks.dll" TaskName="ModulePack" />
+
+  <UsingTask AssemblyFile="$(MFilesBuildTasksPath)\MFiles.BuildTasks.dll" TaskName="InstallApplication" />
+
+  <!-- End: Task Listing -->
+
+  <ItemGroup>
+    <!-- Sample Import of Required Assemblies 
+        <VAFAssemblies Include="MFiles.VAF.dll"/>
+        <VAFAssemblies Include="MFiles.VAF.Common.dll"/>
+        <VAFAssemblies Include="MFiles.VAF.Module.dll"/>
+     -->
+  </ItemGroup>
+</Project>
