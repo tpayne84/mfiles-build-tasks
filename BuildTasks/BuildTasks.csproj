@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InstallApplication.cs" />
-    <Compile Include="ModulePack.cs" />
     <Compile Include="UXPack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

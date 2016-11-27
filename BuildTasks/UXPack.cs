@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
@@ -16,6 +16,9 @@ namespace MFiles.BuildTasks
 	/// </summary>
 	public class UXPack : Task
 	{
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
 		public UXPack()
 		{
 			this.BuildEngine = base.BuildEngine;
@@ -39,15 +42,39 @@ namespace MFiles.BuildTasks
 		/// <returns></returns>
 		public override bool Execute()
 		{
+			// Build the full path.
 			string fullpath = Path.Combine(Directory.GetParent(DirectoryToZip).FullName, OutputName);
-			if( File.Exists( fullpath ) )
-				File.Delete(fullpath);
 
+			// Update the output window.
+			Debug.WriteLine($"Packaging started: {fullpath}");
+
+			// Determine if the file exists / deleting it when found.
 			if( File.Exists( fullpath ) )
+			{
+				Debug.WriteLine($"File found.");
+				File.Delete( fullpath );
+				Debug.WriteLine($"File destroyed.");
+			}
+			else
+			{
+				Debug.WriteLine($"File not found.");
+			}
+
+			// Double check on the file destruction.
+			if ( File.Exists( fullpath ) )
+			{
+				Debug.WriteLine( $"Failed to destroy existing file ( {fullpath} )" );
 				return false;
+			}
 
+			// Zip the directory up as an application.
 			ZipDirectory(DirectoryToZip, fullpath);
 
+			// Log the success.
+			Debug.WriteLine("Application package generated:\n");
+			Debug.WriteLine( fullpath );
+
+			// Return a success.
 			return true;
 		}
 
@@ -58,6 +85,7 @@ namespace MFiles.BuildTasks
 		/// <param name="zipFile">Output Filename</param>
 		public static void ZipDirectory(string targetDir, string zipFile)
 		{
+			// Zip, quickly.
 			ZipFile.CreateFromDirectory(targetDir, zipFile, CompressionLevel.Fastest, false);
 		}
 	}

@@ -8,9 +8,6 @@
 
   <!-- Begin: Task Listing -->
   <UsingTask AssemblyFile="$(MFilesBuildTasksPath)\MFiles.BuildTasks.dll" TaskName="UXPack" />
-
-  <UsingTask AssemblyFile="$(MFilesBuildTasksPath)\MFiles.BuildTasks.dll" TaskName="ModulePack" />
-
   <UsingTask AssemblyFile="$(MFilesBuildTasksPath)\MFiles.BuildTasks.dll" TaskName="InstallApplication" />
 
   <!-- End: Task Listing -->
@@ -18,8 +15,6 @@
   <ItemGroup>
     <!-- Sample Import of Required Assemblies 
         <VAFAssemblies Include="MFiles.VAF.dll"/>
-        <VAFAssemblies Include="MFiles.VAF.Common.dll"/>
-        <VAFAssemblies Include="MFiles.VAF.Module.dll"/>
      -->
   </ItemGroup>
 </Project>

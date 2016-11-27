@@ -8,19 +8,10 @@ namespace BuildTaskTests
 	public class UnitTests
 	{
 		[TestMethod]
-		public void Test_ModulePack()
-		{
-			var modulePack = new ModulePack();
-			modulePack.PathToBuilderConfiguration = @"C:\Program Files\M-Files\M-Files Module Packager\config.json";
-			modulePack.PathToSolutionFile = @"C:\Users\travis.payne\Desktop\GitHub\SearchStringDeserializer\SearchStringDeserializer.sln";
-			modulePack.Execute();
-		}
-
-		[TestMethod]
 		public void Test_UXPack()
 		{
 			var uxPack = new UXPack(); 
-			uxPack .DirectoryToZip = @"C:\Users\travis.payne\Desktop\GitHub\SearchStringDeserializer\SearchStringDeserializer\ux_app";
+			uxPack .DirectoryToZip = @"C:\test";
 			uxPack.OutputName = "ux_app.mfappx" ;
 			uxPack.Execute();
 		}
@@ -30,13 +21,13 @@ namespace BuildTaskTests
 		{
 			var installApp = new InstallApplication();
 			installApp.AllowAnonymousConnection = false;
-			installApp.AppPath = @"C:\Users\travis.payne\Desktop\GitHub\services-vault\App Packaging\ServicesVault.mfappx";
+			installApp.AppPath = @"C:\test\ux_app.mfappx";
 			installApp.AuthenticationType = MFAuthType.MFAuthTypeLoggedOnWindowsUser.ToString();
 			installApp.LocalComputerName = "MSBuild";
-			installApp.VaultGuid = "{33D0C40C-F023-41F9-A3CE-1FB732DA5554}";
+			installApp.VaultGuid = "{65E7D063-FA85-4063-A904-AB44FBAA4C9F}";
 			installApp.UninstallExisting = true;
 
-			installApp.Execute();			
+			installApp.Execute();
 		}
 
 	}
